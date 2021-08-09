@@ -13,7 +13,7 @@ from random import randint
 Window.title = 'Metida'
 
 
-class ParomnimApp(App):
+class ParonimApp(App):
     """Main ParomnimApp class"""
 
     def __init__(self):
@@ -53,4 +53,4 @@ class ParomnimApp(App):
 
 
 if __name__ == '__main__':
-    ParomnimApp().run()
+    ParonimApp().run()
