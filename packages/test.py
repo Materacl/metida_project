@@ -25,11 +25,17 @@ def ega_tests_show():
 
 
 class EgaTest(BoxLayout):
-    tasks = tests.keys()
-    task_shower = Label(text=tasks[randint(0, len(tests.values()))])
+
+    tasks = list(tests.keys())
+    task = str(tasks[randint(0, len(tests.keys()) - 1)])
+    task_shower = Label(text=task)
+
     answer_input = TextInput(multiline=False,
                              background_color=[.19, .26, .35, 1])
-    pass
+
+    submit_btn = Button(text='Submit',
+                        font_size=20,
+                        background_color=[.19, .26, .35, 1])
 
 
 class Pages(PageLayout):
