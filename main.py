@@ -32,8 +32,8 @@ class ParomnimApp(App):
         page_1 = Button(text='Page 1',
                         font_size=30,
                         background_normal='',
-                        background_color=[.15, .55, .4, 1])
-        page_1.bind(on_press=self.btn_pressed)
+                        background_color=[.15, .55, .4, 1],
+                        on_press=self.btn_pressed)
 
         page_2 = Button(text='Page 2',
                         font_size=30,
