@@ -1,5 +1,5 @@
 import io
-filename = 'data/ega_ex.txt'
+filename = 'metida_project/data/ega_ex.txt'
 
 with io.open(filename, encoding='utf-8') as f:
     tests_datas = f.readlines()

@@ -13,6 +13,8 @@ from kivy.core.window import Window
 
 from random import randint
 
+from ega_mode import tests
+
 
 def ega_tests_show():
     ega_tests = EgaTest()
@@ -23,6 +25,10 @@ def ega_tests_show():
 
 
 class EgaTest(BoxLayout):
+    tasks = tests.keys()
+    task_shower = Label(text=tasks[randint(0, len(tests.values()))])
+    answer_input = TextInput(multiline=False,
+                             background_color=[.19, .26, .35, 1])
     pass
 
 
