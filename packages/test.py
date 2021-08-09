@@ -16,8 +16,14 @@ from random import randint
 from ega_mode import tests
 
 
+def generate_ega_tasks():
+    tasks = list(tests.keys())
+    task = str(tasks[randint(0, len(tests.keys()) - 1)])
+    return task
+
+
 def ega_tests_show():
-    ega_tests = EgaTest()
+    ega_tests = EgaTest(task = generate_ega_tasks())
 
     tests_window = Popup(title='ЕГЭ тесты', content=ega_tests)
 
@@ -26,16 +32,13 @@ def ega_tests_show():
 
 class EgaTest(BoxLayout):
 
-    tasks = list(tests.keys())
-    task = str(tasks[randint(0, len(tests.keys()) - 1)])
-    task_shower = Label(text=task)
-
-    answer_input = TextInput(multiline=False,
-                             background_color=[.19, .26, .35, 1])
+    def __init__(self, task):
+        self.task = task
 
     submit_btn = Button(text='Submit',
                         font_size=20,
                         background_color=[.19, .26, .35, 1])
+    pass
 
 
 class Pages(PageLayout):
