@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Paronim App
+title = Metida Project
 
 # (str) Package name
-package.name = mobileapp001
+package.name = metidaproject
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.wiseplat
