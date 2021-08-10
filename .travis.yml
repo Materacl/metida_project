@@ -30,5 +30,4 @@ install:
   - ls bin/ -l
   - gem install dpl --pre
   - dpl releases --token $GITHUB_TOKEN --file "bin/metidaproject-0.1-armeabi-v7a-debug.apk" --tag_name "v.0.1"
-  - echo "TODO COMPILE 64bit"
 
