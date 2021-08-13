@@ -1,0 +1,69 @@
+<PracticeChooseScreen>:
+    MDCarousel:
+        AnchorLayout:
+            AnchorLayout:
+                anchor_x: "center"
+                anchor_y: "top"
+
+                MDLabel:
+                    halign: "center"
+                    text: "Практика ЕГЭ"
+                    font_style: "JetBrainsMono-Label"
+                    theme_text_color: 'Primary'
+
+            AnchorLayout:
+                anchor_x: "center"
+                anchor_y: "bottom"
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: True
+                    spacing: 10
+                    padding: 50
+
+                    MDFillRoundFlatButton:
+                        text: 'Начать'
+                        font_style: "JetBrainsMono-Buttons"
+                        on_press:
+                            root.manager.transition.direction = 'down'
+                            root.manager.current = 'ega'
+
+                    MDFillRoundFlatButton:
+                        text: 'Настройки'
+                        font_style: "JetBrainsMono-Buttons"
+
+                    MDFillRoundFlatButton:
+                        text: 'Выход'
+                        font_style: "JetBrainsMono-Buttons"
+
+        AnchorLayout:
+            AnchorLayout:
+                anchor_x: "center"
+                anchor_y: "top"
+
+                MDLabel:
+                    halign: "center"
+                    text: "Практика 2 выбора"
+                    font_style: "JetBrainsMono-Label"
+                    theme_text_color: 'Primary'
+
+            AnchorLayout:
+                anchor_x: "center"
+                anchor_y: "bottom"
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: True
+                    spacing: 10
+                    padding: 50
+
+                    MDFillRoundFlatButton:
+                        text: 'Начать'
+                        font_style: 'Button'
+                        text_color: 1, 1, 1, 1
+
+                    MDFillRoundFlatButton:
+                        text: 'Настройки'
+
+                    MDFillRoundFlatButton:
+                        text: 'Выход'

@@ -1,0 +1,24 @@
+<EgaTestsScreen>:
+
+    AnchorLayout:
+        id: layout
+
+    AnchorLayout:
+        anchor_x: 'right'
+        anchor_y: 'top'
+
+        MDProgressBar:
+            id: progress_bar
+            size_hint_y: 0.05
+
+    AnchorLayout:
+        anchor_x: 'right'
+        anchor_y: 'bottom'
+        padding: 30
+
+        MDFloatingActionButtonSpeedDial:
+            data: {'Меню': 'menu','Настройки': 'cog-outline'}
+            root_button_anim: True
+            label_text_color: 1, 1, 1, 1
+
+            callback: root.action_button

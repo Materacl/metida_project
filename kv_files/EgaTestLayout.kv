@@ -1,0 +1,34 @@
+<EgaTestLayout>:
+    orientation: 'vertical'
+    spacing: 20
+    padding: 50
+
+    MDLabel:
+        id: task
+        font_style: "JetBrainsMono-Text"
+        theme_text_color: 'Secondary'
+
+    MDTextField:
+        id: answer
+
+        size_hint_x: 0.5
+
+        multiline: False
+        font_style: "JetBrainsMono-Text"
+        hint_text: "Ответить"
+
+        helper_text_mode: 'on_error'
+        helper_text: 'Введите ответ'
+        required: True
+
+        max_text_length: 20
+        color_mode: 'custom'
+
+    MDFillRoundFlatButton:
+        id: submit_btn
+
+        text: 'Ответить'
+        font_style: "JetBrainsMono-Buttons"
+        font_size: 15
+
+        on_press: root.submit_answer()

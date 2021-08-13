@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Paronim App
+title = Mobile App 001
 
 # (str) Package name
-package.name = metida_project
+package.name = mobileapp001
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.wiseplat
@@ -28,7 +28,7 @@ source.dir = .
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.4
+version = 0.3
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 0.4
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.0.0
+requirements = python3,kivy==2.0.0,kivymd==0.104.2,sdl2_ttf==2.0.15,pillow
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

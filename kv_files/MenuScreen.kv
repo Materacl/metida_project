@@ -1,0 +1,42 @@
+<MenuScreen>:
+
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "top"
+
+        MDLabel:
+            halign: "center"
+            text: "Paronim App"
+            font_size: 40
+            font_style: "JetBrainsMono-Label"
+            theme_text_color: 'Primary'
+
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "bottom"
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_size: True
+            spacing: 10
+            padding: 50
+
+            MDFillRoundFlatButton:
+                text: 'Начать'
+                font_style: "JetBrainsMono-Buttons"
+                on_press:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'practice'
+
+            MDFillRoundFlatIconButton:
+                text: 'Настройки'
+                icon: 'cog-outline'
+                font_style: "JetBrainsMono-Buttons"
+                on_press:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'settings'
+
+            MDFillRoundFlatIconButton:
+                text: 'Выход'
+                icon: 'exit-to-app'
+                font_style: "JetBrainsMono-Buttons"
