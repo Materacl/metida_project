@@ -3,6 +3,8 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.anchorlayout import AnchorLayout
+
 from kivymd.uix.carousel import MDCarousel
 from kivymd.uix.label import MDLabel
 
@@ -32,14 +34,16 @@ class EgaTestsScreen(Screen):
 
         self.layout = self.ids.layout
         self.carousel = MDCarousel(direction='right')
-        self.carousel_slides = None
+        self.carousel_slides = self.carousel.slides
 
         self.progress = 0
         self.max_progress = 0
 
     def on_enter(self):
+        self.create_slides()
 
-        # Creating tests from imported func
+    def create_slides(self):
+        # Creating tests data from imported func
         tests = make_tests()
 
         # Creating slides with different tests
@@ -56,10 +60,11 @@ class EgaTestsScreen(Screen):
 
             self.carousel.add_widget(test)
 
+        # Creating end screen
         self.carousel.add_widget(TestEndLayout())
-        self.carousel_slides = self.carousel.slides
-        print(self.carousel_slides)
 
+        # Adding widgets to the main layout
+        self.carousel_slides = self.carousel.slides
         self.layout.add_widget(self.carousel)
 
     # Switches slides
@@ -68,12 +73,6 @@ class EgaTestsScreen(Screen):
 
         progress_bar = self.ids.progress_bar
         progress_bar.value = self.progress / self.max_progress * 100
-
-    def end_test(self):
-        print(self.carousel_slides)
-
-        for slide in self.carousel_slides[0:self.max_progress]:
-            slide.show_answer()
 
     # Button that leads to settings and menu
     def action_button(self, btn):
@@ -96,14 +95,21 @@ class EgaTestLayout(BoxLayout):
 
         self.answer = ''
 
+        self.first_submit = False
+
     def create_task(self, task_text, task_answer):
         self.ids.task.text = task_text
         self.answer = task_answer
         print(self.answer)
 
     def submit_answer(self):
-        self.parent.parent.parent.parent.progress += 1
 
+        # Checking if the submit button was pressed first time
+        if not self.first_submit:
+            self.parent.parent.parent.parent.progress += 1
+            self.first_submit = True
+
+        # Checking if answer is right
         if self.ids.answer.text.lower() == self.answer:
             print('Верно')
         else:
@@ -120,18 +126,21 @@ class EgaTestLayout(BoxLayout):
         print('Nu da')
 
 
-class TestEndLayout(BoxLayout):
+class TestEndLayout(AnchorLayout):
     Builder.load_file('kv_files/TestEndLayout.kv')
 
     def end_btn(self):
-        EgaTestsScreen().end_test()
+        carousel = self.parent.parent
+        print(carousel)
+        for slide in carousel.slides[0:len(carousel.slides)-1]:
+            slide.show_answer()
 
 
 class SettingsScreen(Screen):
     Builder.load_file('kv_files/SettingsScreen.kv')
 
 
-class TestMDApp(MDApp):
+class ParonimApp(MDApp):
     """Main App class"""
 
     def build(self):
@@ -182,4 +191,4 @@ class TestMDApp(MDApp):
 
 
 if __name__ == '__main__':
-    TestMDApp().run()
+    ParonimApp().run()

@@ -3,32 +3,40 @@
     spacing: 20
     padding: 50
 
-    MDLabel:
-        id: task
-        font_style: "JetBrainsMono-Text"
-        theme_text_color: 'Secondary'
+    ScrollView:
+        MDLabel:
+            id: task
 
-    MDTextField:
-        id: answer
+            size_hint_y: None
+            size: self.texture_size
 
-        size_hint_x: 0.5
+            font_style: "JetBrainsMono-Text"
+            theme_text_color: 'Secondary'
 
-        multiline: False
-        font_style: "JetBrainsMono-Text"
-        hint_text: "Ответить"
+    MDBoxLayout:
+        size_hint_x: 0.8
+        size_hint_y: 0.1
+        MDTextField:
+            id: answer
 
-        helper_text_mode: 'on_error'
-        helper_text: 'Введите ответ'
-        required: True
+            size_hint_x: 0.5
 
-        max_text_length: 20
-        color_mode: 'custom'
+            multiline: False
+            font_style: "JetBrainsMono-Text"
+            hint_text: "Ответить"
 
-    MDFillRoundFlatButton:
-        id: submit_btn
+            helper_text_mode: 'on_error'
+            helper_text: 'Введите ответ'
+            required: True
 
-        text: 'Ответить'
-        font_style: "JetBrainsMono-Buttons"
-        font_size: 15
+            max_text_length: 20
+            color_mode: 'custom'
 
-        on_press: root.submit_answer()
+        MDFillRoundFlatButton:
+            id: submit_btn
+
+            text: 'Ответить'
+            font_style: "JetBrainsMono-Buttons"
+            font_size: 15
+
+            on_press: root.submit_answer()
