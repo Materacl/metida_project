@@ -9,9 +9,14 @@ from kivymd.uix.carousel import MDCarousel
 from kivymd.uix.label import MDLabel
 
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 
 from random import choice
 from packages.ega_mode import make_tests
+
+# Keyboard above text input
+Window.keyboard_anim_args = {'d': .2, 't': 'in_out_expo'}
+Window.softinput_mode = 'below_target'
 
 
 class MenuScreen(Screen):
