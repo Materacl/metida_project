@@ -1,5 +1,18 @@
 <TestEndLayout>:
-    MDFillRoundFlatButton:
-        text: 'Закончить'
-        font_style: "JetBrainsMono-Buttons"
-        on_press: root.end_btn()
+    MDBoxLayout:
+        adaptive_size: True
+        orientation: 'vertical'
+        spacing: 100
+
+        MDFillRoundFlatButton:
+            text: 'Закончить'
+            font_style: "JetBrainsMono-Buttons"
+            on_press: root.end_btn()
+
+        MDLabel:
+            id: stats
+
+            font_style: "JetBrainsMono-Label"
+            font_size: 23
+
+            halign: "center"

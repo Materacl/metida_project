@@ -45,6 +45,8 @@ class EgaTestsScreen(Screen):
         self.progress = 0
         self.max_progress = 0
 
+        self.right_answers = 0
+
     def on_enter(self):
         self.create_slides()
 
@@ -100,6 +102,7 @@ class EgaTestLayout(BoxLayout):
         super(EgaTestLayout, self).__init__(**kwargs)
 
         self.answer = ''
+        self.answer_is_right = False
 
         self.first_submit = False
 
@@ -116,19 +119,34 @@ class EgaTestLayout(BoxLayout):
             self.first_submit = True
 
         # Checking if answer is right
-        if self.ids.answer.text.lower() == self.answer:
-            print('Верно')
+        if self.ids.answer_field.text.lower() == self.answer:
+            self.answer_is_right = True
+
+            if self.first_submit:
+                self.parent.parent.parent.parent.right_answers += 1
         else:
-            print("Неверно")
+            self.answer_is_right = False
 
         # Мне стыдно...
         self.parent.parent.parent.parent.next_slide()
 
     def show_answer(self):
-        self.remove_widget(self.ids.answer)
-        self.remove_widget(self.ids.submit_btn)
-
-        self.add_widget(MDLabel(text=self.answer))
+        self.ids.answer_field_layout.remove_widget(self.ids.answer_field)
+        self.ids.answer_field_layout.remove_widget(self.ids.submit_btn)
+        if self.answer_is_right:
+            self.ids.answer_field_layout.add_widget(MDLabel(text=self.answer,
+                                                            halign="center",
+                                                            size_hint=(1, 1),
+                                                            font_style="JetBrainsMono-Label",
+                                                            theme_text_color="Custom",
+                                                            text_color=(.33, .65, .1, 1)))
+        else:
+            self.ids.answer_field_layout.add_widget(MDLabel(text=self.answer,
+                                                            halign="center",
+                                                            size_hint=(1, 1),
+                                                            font_style="JetBrainsMono-Label",
+                                                            theme_text_color="Custom",
+                                                            text_color=(.96, .24, .20, 1)))
         print('Nu da')
 
 
@@ -137,9 +155,20 @@ class TestEndLayout(AnchorLayout):
 
     def end_btn(self):
         carousel = self.parent.parent
-        print(carousel)
-        for slide in carousel.slides[0:len(carousel.slides)-1]:
+
+        self.show_stats(carousel)
+
+        for slide in carousel.slides[0:len(carousel.slides) - 1]:
             slide.show_answer()
+
+        #carousel.load_slide(carousel.slides[0])
+
+    def show_stats(self, carousel):
+        stats = self.ids.stats
+        right_answers = self.parent.parent.parent.parent.right_answers
+
+        stats.text = f"Правильно:\n{right_answers}/{len(carousel.slides) - 1}" \
+                     f"\n{'%.0f' % ((right_answers/(len(carousel.slides) - 1)) * 100)}%"
 
 
 class SettingsScreen(Screen):

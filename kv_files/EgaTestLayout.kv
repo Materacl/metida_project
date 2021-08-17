@@ -1,7 +1,7 @@
 <EgaTestLayout>:
     orientation: 'vertical'
     spacing: 20
-    padding: 50
+    padding: 60
 
     ScrollView:
         MDLabel:
@@ -14,10 +14,14 @@
             theme_text_color: 'Secondary'
 
     MDBoxLayout:
-        size_hint_x: 0.8
-        size_hint_y: 0.1
+        id: answer_field_layout
+
+        orientation: 'vertical'
+
+        size_hint_x: 1
+        size_hint_y: 0.2
         MDTextField:
-            id: answer
+            id: answer_field
 
             size_hint_x: 0.5
 
