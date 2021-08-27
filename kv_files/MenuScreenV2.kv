@@ -1,0 +1,115 @@
+<MenuScreen>:
+    MDNavigationLayout:
+        ScreenManager:
+            MDScreen:
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDToolbar:
+                        title: "Выбор теста"
+                        font_style: "JetBrainsMono-Label"
+
+                        md_bg_color: 21/255,21/255,21/255, 1
+                        elevation: 10
+
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open"), 'Меню']]
+
+                        MDBoxLayout:
+                            size_hint_x: 0.5
+
+                            MDIcon:
+                                icon: 'database'
+                                halign: 'right'
+
+                            MDLabel:
+                                id: scores
+                                text: f'{app.scores}'
+                                font_style: "JetBrainsMono-Label"
+                                font_size: 20
+
+                                halign: 'left'
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        spacing: 20
+                        padding: 20
+
+                        MDFillRoundFlatButton:
+                            id: ega_btn
+
+                            size_hint: 1, 1
+                            md_bg_color: app.theme_cls.bg_dark
+
+                            on_press:
+                                root.manager.transition.direction = 'down'
+                                root.manager.current = 'ega'
+
+                            MDBoxLayout:
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    spacing: 5
+                                    padding: 20
+                                    MDLabel:
+                                        text: "Тесты ЕГЭ"
+                                        font_style: "JetBrainsMono-Label"
+                                        font_size: 40
+                                        theme_text_color: 'Primary'
+                                    MDLabel:
+                                        text: "Тесты для проработки заданий из ЕГЭ."
+                                        font_style: "JetBrainsMono-Text"
+                                        font_size: 20
+                                        theme_text_color: 'Secondary'
+                                    MDLabel:
+                                        id: ega_percentage
+                                        text: app.get_percentage_text(app.ega_right_answers, app.ega_wrong_answers)
+                                        font_style: "JetBrainsMono-Label"
+                                        font_size: 20
+                                        theme_text_color: 'Secondary'
+
+                                MDBoxLayout:
+                                    size_hint_x: 0.25
+
+                                    MDIcon:
+                                        icon: 'database'
+                                        halign: 'right'
+                                        font_size: 40
+
+                                    MDLabel:
+                                        text: '10'
+                                        font_style: "JetBrainsMono-Label"
+                                        font_size: 30
+
+                                        halign: 'left'
+
+                        MDFillRoundFlatButton:
+                            id: ega_btn
+
+                            size_hint: 1, 1
+                            md_bg_color: app.theme_cls.bg_dark
+
+                            on_press:
+                                root.manager.transition.direction = 'down'
+                                root.manager.current = 'ega'
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                spacing: 5
+                                padding: 20
+                                MDLabel:
+                                    text: "В разработке..."
+                                    font_style: "JetBrainsMono-Label"
+                                    font_size: 40
+                                    theme_text_color: 'Primary'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        on_press:
+                            root.manager.transition.direction = 'up'
+                            root.manager.current = 'menu'
+                            root.manager.refresh()
+                        IconLeftWidget:
+                            icon: 'home'

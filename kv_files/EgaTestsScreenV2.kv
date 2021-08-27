@@ -1,0 +1,44 @@
+<EgaTestsScreen>:
+    MDNavigationLayout:
+        ScreenManager:
+            MDScreen:
+                MDBoxLayout:
+                    id: layout
+                    orientation: 'vertical'
+
+                    MDToolbar:
+
+                        title: "Тесты ЕГЭ"
+                        font_style: "JetBrainsMono-Label"
+
+                        md_bg_color: 21/255,21/255,21/255, 1
+                        elevation: 10
+
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open"), 'Меню']]
+
+                        MDBoxLayout:
+                            size_hint_x: 0.5
+
+                            MDIcon:
+                                icon: 'database'
+                                halign: 'right'
+
+                            MDLabel:
+                                id: scores
+                                text: f'{app.scores}'
+                                font_style: "JetBrainsMono-Label"
+                                font_size: 20
+
+                                halign: 'left'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        on_press:
+                            root.manager.transition.direction = 'up'
+                            root.manager.current = 'menu'
+                        IconLeftWidget:
+                            icon: 'home'

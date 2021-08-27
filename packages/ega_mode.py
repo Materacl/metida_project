@@ -1,25 +1,37 @@
 import io
+import json
 
-filename = 'packages/data/ega_ex.txt'
+filename = 'packages/data/ega_tests_redacted.json'
 
 
 def make_tests():
     with io.open(filename, encoding='utf-8') as f:
-        tests_datas = f.readlines()
+        tests_datas = json.load(f)
 
-    answers = [answer.rstrip() for answer in tests_datas[5::6]]
-    tasks = [task for task in tests_datas if task.rstrip() not in answers]
+    answers = []
+
+    for answer in tests_datas.keys():
+        if answer.find('|') > -1:
+            answer_splited = answer.split('|')
+            answers.append(answer_splited[1])
+        else:
+            answers.append(answer.lower())
+
+    tasks = []
+    for text in tests_datas.values():
+        for text_line in text:
+            text[text.index(text_line)] = text_line.strip()
+        tasks.append(text)
 
     tests = {}
-    i = 0
 
     for answer in answers:
-        tests[tuple(tasks[i:i + 5])] = answer
-        i += 5
+        tests[tuple(tasks[answers.index(answer)])] = answer
 
     tests_index = {}
     n = 0
     for test in tests.items():
         tests_index[n] = test
         n += 1
+
     return tests_index
