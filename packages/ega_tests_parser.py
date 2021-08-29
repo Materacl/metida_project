@@ -10,12 +10,14 @@ text_to_replace = 'В одном из приведённых ниже предл
 def main():
     r = requests.get(url)
     soup = BS(r.text, 'html.parser')
+    print()
 
     tests_texts_raw = soup.find_all('div', class_='pbody')
 
     tests_texts = []
     for tests_text_raw in tests_texts_raw:
         task_lines_raw = tests_text_raw.find_all('p', class_='left_margin')
+        print(task_lines_raw)
 
         if task_lines_raw[0].text != '':
             task_lines = task_lines_raw[0].text.replace(text_to_replace, '').split('.')
