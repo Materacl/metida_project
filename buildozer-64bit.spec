@@ -7,7 +7,7 @@ title = Paronim App
 package.name = mobileapp001
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.wiseplat
+package.domain = org.mobileapp
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -43,10 +43,10 @@ requirements = python3,kivy==2.0.0,kivymd,https://github.com/kivymd/KivyMD/archi
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/data/logo/presplash512okmin.png
+#presplash.filename = %(source.dir)s/data/logo/presplash512okmin.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/data/logo/logo512min.png
+#icon.filename = %(source.dir)s/data/logo/logo512min.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = all
@@ -226,7 +226,7 @@ fullscreen = 0
 #android.copy_libs = 1
 
 # (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.arch = armeabi-v7a
+android.arch = arm64-v8a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing
