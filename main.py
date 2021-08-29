@@ -1,5 +1,3 @@
-from kivy.properties import NumericProperty
-
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.text import LabelBase
@@ -21,6 +19,8 @@ from packages.ega_mode import make_tests
 Window.keyboard_anim_args = {'d': .2, 't': 'in_out_expo'}
 Window.softinput_mode = 'below_target'
 
+user_file = 'packages/data/user.json'
+
 
 class MenuScreen(Screen):
     Builder.load_file('kv_files/MenuScreenV2.kv')
@@ -40,8 +40,6 @@ class MenuScreen(Screen):
                 self.ids.ega_percentage.text_color = (.96, .24, .20, 1)
         except TypeError:
             pass
-
-
 
 
 class ArchiveScreen(Screen):
@@ -231,7 +229,7 @@ class ParonimApp(MDApp):
         ]
 
     def get_user_data(self):
-        with open('user.json') as user_data_file:
+        with open(user_file) as user_data_file:
             user_data = json.load(user_data_file)
             print(user_data)
             return user_data
@@ -244,7 +242,6 @@ class ParonimApp(MDApp):
         except ZeroDivisionError:
             percentage = None
         return percentage
-
 
     def get_percentage_text(self, right_answers, wrong_answers):
 
@@ -263,7 +260,7 @@ class ParonimApp(MDApp):
             "ega_right_answers": self.ega_right_answers,
             "ega_wrong_answers": self.ega_wrong_answers,
         }
-        with open('user.json', 'w') as user_data_file:
+        with open(user_file, 'w') as user_data_file:
             json.dump(new_user_data, user_data_file)
 
 
