@@ -122,7 +122,6 @@ class EgaTestLayout(BoxLayout):
     def create_task(self, task_text, task_answer):
         self.ids.task.text = task_text
         self.answer = task_answer
-        print(self.answer)
 
     def submit_answer(self):
 
@@ -131,7 +130,6 @@ class EgaTestLayout(BoxLayout):
             self.answer_is_right = True
             MDApp.get_running_app().scores += 10
             MDApp.get_running_app().ega_right_answers += 1
-            print(MDApp.get_running_app().ega_right_answers)
             self.parent.parent.parent.parent.parent.parent.parent.ids.scores.text = f'{MDApp.get_running_app().scores}'
         else:
             MDApp.get_running_app().ega_wrong_answers += 1
@@ -231,7 +229,6 @@ class ParonimApp(MDApp):
     def get_user_data(self):
         with open(user_file) as user_data_file:
             user_data = json.load(user_data_file)
-            print(user_data)
             return user_data
 
     def get_percentage(self, right_answers, wrong_answers):
